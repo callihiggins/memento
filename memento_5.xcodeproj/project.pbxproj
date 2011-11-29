@@ -35,6 +35,7 @@
 		2B27E0B0143D00EB00FABC97 /* Default~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B27E0AD143D00EB00FABC97 /* Default~ipad.png */; };
 		2B27E0B1143D00EB00FABC97 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B27E0AE143D00EB00FABC97 /* Default.png */; };
 		2B27E0B2143D00EB00FABC97 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B27E0AF143D00EB00FABC97 /* Default@2x.png */; };
+		2BE1AF4C148495AE00BED9ED /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1AF4B148495AE00BED9ED /* DatePicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,8 @@
 		2B27E0AD143D00EB00FABC97 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~ipad.png"; sourceTree = "<group>"; };
 		2B27E0AE143D00EB00FABC97 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2B27E0AF143D00EB00FABC97 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2BE1AF4A148495AE00BED9ED /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatePicker.h; path = Plugins/DatePicker.h; sourceTree = "<group>"; };
+		2BE1AF4B148495AE00BED9ED /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatePicker.m; path = Plugins/DatePicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +230,8 @@
 		2B27E09C143CFFCC00FABC97 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				2BE1AF4A148495AE00BED9ED /* DatePicker.h */,
+				2BE1AF4B148495AE00BED9ED /* DatePicker.m */,
 				2B27E09D143CFFCC00FABC97 /* README */,
 			);
 			name = Plugins;
@@ -323,6 +328,7 @@
 			files = (
 				2B27E07C143CFFCC00FABC97 /* main.m in Sources */,
 				2B27E09B143CFFCC00FABC97 /* AppDelegate.m in Sources */,
+				2BE1AF4C148495AE00BED9ED /* DatePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,6 +3,7 @@
         <title>memento</title>
         <script type="text/javascript" charset="utf-8" src="phonegap-1.1.0.js"></script>
         <script type="text/javascript" charset="utf-8" src="memento.js"></script>                                                                                                   
+        <script type="text/javascript" charset="utf-8" src="DatePicker.js"></script>                                                                                                   
         <script type="text/javascript" src="jquery.js"></script>
         <script type="text/javascript" charset="utf-8" src="json2.js"></script>
         <link type="text/css" rel="stylesheet" media="screen" href="jqtouch/jqtouch/jqtouch.css">
@@ -51,14 +52,18 @@
                 <h1>Dates</h1>
                 <a class="button back" href="#"></a>
             </div>
+             <form method="post">
             <ul>
-                <li class="arrow"><a id="0" href="#date">Today</a></li>
-                <li class="arrow"><a id="1" href="#date">Yesterday</a></li>
-                <li class="arrow"><a id="2" href="#date">2 Days Ago</a></li>
-                <li class="arrow"><a id="3" href="#date">3 Days Ago</a></li>
-                <li class="arrow"><a id="4" href="#date">4 Days Ago</a></li>
-                <li class="arrow"><a id="5" href="#date">5 Days Ago</a></li>
-            </ul>
+            <li class="arrow"><a href="#" onclick="show('date')">Minimum Date</a></li>
+            <li class="arrow"><a href="#" onclick="show('date')">Maximum Date</a></li>
+         	<li class="arrow"><a href="#" onclick="show('date')">Choose Date</a></li>
+                <div>Date: <span id="date"></span></div>
+
+                </ul>
+            </form>
         </div>
+        
+        
+        
     </body>
 </html>

@@ -1,10 +1,18 @@
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
+function preventBehavior(e) 
+{ 
+    e.preventDefault(); 
+};
+document.addEventListener("touchmove", preventBehavior, false);
+
+
 function onDeviceReady(){
     $('#email_entry form').submit(saveSettings);
     $('#email_entry').bind('pageAnimationStart', loadSettings);
-    
+    $('#time').bind('pageAnimationStart', loadSettings);
+
     var email = localStorage.getItem("email");
     
     console.log(localStorage.email);
@@ -16,6 +24,8 @@ function onDeviceReady(){
 
 function loadSettings() { 
     $('#email').val(localStorage.email); 
+    document.getElementById("date").innerHTML = localStorage.returnDate;
+
 }
 
 function saveSettings() { 
@@ -46,22 +56,24 @@ function captureError(error) {
 // Upload files to server
 function uploadFile(mediaFile) {
     console.log("upload started");
-    $('body').append('<div id="progress">Developing...</div>');
+    $('#header').append('<div id="progress">Developing...</div>');
    
     path = mediaFile.fullPath,
     name = mediaFile.name;
     theEmail = localStorage.email;
+    theDate = localStorage.returnDate;
     
     var options = new FileUploadOptions();
 	options.fileKey="file";
     
     var params = new Object();
     params.fileName = name;
-    params.email = "calli@nyu.edu";
+    params.email =theEmail;
+    params.date = theDate;
     
     options.params = params;
    
-    console.log("options:");
+    console.log(params);
  // console.log(options);
     
     var ft = new FileTransfer();
@@ -80,6 +92,21 @@ function fail(message) {
     console.log('Error uploading file ' + path + ': ' + error.code);
     $('#progress').remove();
     //can i call uploadFile like this? check notifaction documentation
-   // navigator.notification.alert('Upload Failed', uploadFile(mediaFile), 'Try Again');
+    navigator.notification.alert('Upload Failed', uploadFile(mediaFile), 'Try Again');
+}
+
+var cb = function(date) {
+    console.log(date.toString());
+    localStorage.returnDate = date.toString();
+    document.getElementById("date").innerHTML = date.toString();
+    
+}
+
+var show = function(mode) {
+    plugins.datePicker.show({
+                            date: new Date(),
+                            mode: mode, //date or time or blank for both
+                            allowOldDates: false
+                            }, cb);
 }
 
