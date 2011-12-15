@@ -1,6 +1,8 @@
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
+var theImage = new Object();
+
 function preventBehavior(e) 
 { 
     e.preventDefault(); 
@@ -10,22 +12,23 @@ document.addEventListener("touchmove", preventBehavior, false);
 
 function onDeviceReady(){
     $('#email_entry form').submit(saveSettings);
+    $('#time form').submit(saveTimeSettings);
+    $('#range form').submit(saveRangeSettings);
+    $('#caption_entry form').submit(saveCaption);
     $('#email_entry').bind('pageAnimationStart', loadSettings);
     $('#time').bind('pageAnimationStart', loadSettings);
-
-    var email = localStorage.getItem("email");
-    
     console.log(localStorage.email);
-  
     if(email == null){
         alert("You need to create an account!");
+        ( "#email" ).show();
     }
+    $.jQTouch({statusBar:'black'});
 }
 
 function loadSettings() { 
     $('#email').val(localStorage.email); 
+    $('#time').val(localStorage.time); 
     document.getElementById("date").innerHTML = localStorage.returnDate;
-
 }
 
 function saveSettings() { 
@@ -33,6 +36,48 @@ function saveSettings() {
     jQT.goBack(); 
     return false;
 }
+function saveCaption(){
+    localStorage.caption = $('#caption').val(); 
+    console.log(localStorage.caption);
+    jQT.goBack(); 
+    return false;
+   
+  
+}
+function saveTimeSettings() { 
+    localStorage.time = $('#time').val(); 
+}
+function saveRangeSettings() { 
+    localStorage.min = $('#minimum').val(); 
+    localStorage.max = $('#maximum').val(); 
+ 
+}
+
+function generateDate() {
+    saveRangeSettings();
+     var d = new Date();
+    
+     console.log("current date:" + d.toString());
+   var min = localStorage.min; 
+    console.log("low range: " + min);
+    var max = localStorage.max; 
+    console.log("high range: " + max);
+   var one_month_milli=1000*60*60*24*30;
+   var min_milli = min * one_month_milli;
+   var max_milli = max * one_month_milli;
+  var today = d.getTime();
+     console.log("today in millis" + today);
+        var time_to_add= Math.floor(Math.random()*(max_milli - min_milli+1)+min_milli);
+     console.log("time to add:" + time_to_add);
+  var  new_date = Math.round(today) + Math.round(time_to_add);
+    console.log("new time to add in millis: " + new_date);
+    d.setTime(new_date);
+   localStorage.returnDate = d.toDateString();
+    console.log("new date to string" + d.toString());
+    uploadFile();
+}
+
+
 
 function captureImage() {
     // Launch device camera application, 
@@ -42,27 +87,30 @@ function captureImage() {
 }
 
 function captureSuccess(mediaFiles) {
-    var i, len;
+    theImage =  mediaFiles[0];
+    jQT.goTo('#settings');
+    /*var i, len;
     for (i = 0, len = mediaFiles.length; i < len; i += 1) {
         uploadFile(mediaFiles[i]);
-    }       
+    }     */  
 }
 
 function captureError(error) {
     var msg = 'An error occurred during capture: ' + error.code;
-    navigator.notification.alert(msg, null, 'Uh oh!');
+   
 }
 
 // Upload files to server
-function uploadFile(mediaFile) {
+function uploadFile() {
+    jQT.goTo('#home');
     console.log("upload started");
     $('#header').append('<div id="progress">Developing...</div>');
    
-    path = mediaFile.fullPath,
-    name = mediaFile.name;
+    path = theImage.fullPath,
+    name = theImage.name;
     theEmail = localStorage.email;
     theDate = localStorage.returnDate;
-    
+    theCaption = localStorage.caption;
     var options = new FileUploadOptions();
 	options.fileKey="file";
     
@@ -70,6 +118,7 @@ function uploadFile(mediaFile) {
     params.fileName = name;
     params.email =theEmail;
     params.date = theDate;
+    params.caption = theCaption;
     
     options.params = params;
    
@@ -78,7 +127,8 @@ function uploadFile(mediaFile) {
     
     var ft = new FileTransfer();
     
-    ft.upload(path,"http://memento.heroku.com/capsules", win, fail, options);      
+    ft.upload(path,"http://memento.heroku.com/capsules", win, fail, options); 
+    $('#settings').show();
 }
 
 function win(r) {
@@ -88,17 +138,16 @@ function win(r) {
     navigator.notification.alert('Sent to your future self', null, 'Success!');
 }
 
-function fail(message) {
+function fail(error) {
     console.log('Error uploading file ' + path + ': ' + error.code);
     $('#progress').remove();
-    //can i call uploadFile like this? check notifaction documentation
-    navigator.notification.alert('Upload Failed', uploadFile(mediaFile), 'Try Again');
+    navigator.notification.alert('Try Again', uploadFile(), 'Failed to Develop');
 }
 
 var cb = function(date) {
     console.log(date.toString());
-    localStorage.returnDate = date.toString();
-    document.getElementById("date").innerHTML = date.toString();
+    localStorage.returnDate = date.toDateString();
+     document.getElementById("date").innerHTML = date.toDateString();
     
 }
 

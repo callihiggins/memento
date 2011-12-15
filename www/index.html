@@ -21,19 +21,32 @@
     <body>
       <div id="home">
             <div id="header"> <h1> <img src="images/memento_header.png" width=300></h1>
-                <div class="cameraButton" onclick="captureImage();">take photo</div>
+               <div class="cameraButton" onclick="captureImage();"></div>
                 <a href="#settings"><div class="settingsButton"> </div></a>
             </div>
         </div>
         <div id="settings">  
             <div class="toolbar">
+                <a class="button back" href="#"></a>
                 <h1> Settings</h1>
-               <a class="button flip" href="#home"></a>
             </div>
             <ul>
                 <li class="arrow"><a href="#time">Developing Time</a></li>
                 <li class="arrow"><a href="#email_entry">Delivery Address</a></li>
+                <li class="arrow"><a href="#caption_entry">Add Caption</a></li>
             </ul>
+        </div>
+        <div id="caption_entry">
+            <div class="toolbar">
+                <h1>Add Caption</h1>
+                <a class="button back" href="#"></a>
+            </div>
+            <form method="post">
+                <ul class="rounded">
+                    <li><input type="text" placeholder="Caption" name="caption" id="caption" autocapitalize="on" autocorrect="on" autocomplete="on" /></li>
+                    <li><input type="submit" class="submit" name="action" value="Save Caption"/></li>
+                </ul>
+            </form>
         </div>
           <div id="email_entry">
             <div class="toolbar">
@@ -52,18 +65,60 @@
                 <h1>Dates</h1>
                 <a class="button back" href="#"></a>
             </div>
-             <form method="post">
             <ul>
-            <li class="arrow"><a href="#" onclick="show('date')">Minimum Date</a></li>
-            <li class="arrow"><a href="#" onclick="show('date')">Maximum Date</a></li>
-         	<li class="arrow"><a href="#" onclick="show('date')">Choose Date</a></li>
-                <div>Date: <span id="date"></span></div>
-
-                </ul>
-            </form>
+                <li class="arrow"><a href='#range'>Choose Range</a></li>
+                <li class="arrow"><a href='#dateEntered'>Choose Date</a></li>
+            </ul>
         </div>
-        
-        
-        
+                <div id="range">
+                     <div class="toolbar">
+                         <h1>Date Range</h1>
+                        <a class="button back" href="#"></a>
+                     </div>
+                    <form method="post">
+                    <ul class = "rouded"><li> 
+                        From:<select id="minimum">
+                     <option value="6">6 months</option>
+                     <option value="7">7 months</option>
+                     <option value="8">8 months</option>
+                     <option value="9">9 months</option>
+                     <option value="10">10 months</option>
+                     <option value="11">11 months</option>
+                     <option value="12">1 year</option>
+                     <option value="24">2 years</option>
+                     <option value="36">3 years</option>
+                     <option value="48">4 years</option>
+                     <option value="60">5 years</option>
+                    </select></li>
+                    <li>
+                        To:<select id="maximum">
+                        <option value="6">6 months</option>
+                        <option value="7">7 months</option>
+                        <option value="8">8 months</option>
+                        <option value="9">9 months</option>
+                        <option value="10">10 months</option>
+                        <option value="11">11 months</option>
+                        <option value="12">1 year</option>
+                        <option value="24">2 years</option>
+                        <option value="36">3 years</option>
+                        <option value="48">4 years</option>
+                        <option value="60" selected>5 years</option>
+                        </select></li>
+            <li><input type="submit" class="submit" name="action" value="Send Photo" onclick="generateDate();"/></li>
+                        </form>                    
+                </ul>
+                </div>
+                <div id="dateEntered">
+                    <div class="toolbar">
+                        <h1>Choose Date</h1>
+                        <a class="button back" href="#"></a>
+                    </div>
+                    <ul>
+                        <li class="arrow"><a href="#" onclick="show('date')">Choose Date</a></li>
+                        <div style="text-align:center"><span id="date"></span></div>
+                    <li><input type="submit" class="submit" name="action" value="Send Photo" onclick="uploadFile();"/></li>
+                    </ul>
+                </div>
+        </div>
     </body>
 </html>

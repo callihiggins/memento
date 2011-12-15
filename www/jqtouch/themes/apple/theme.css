@@ -223,7 +223,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
 }
 
 #jqt ul li {
-    color: rgba(255,255,255,.2);
+    color: rgba(0,0,0, .4);
     border-top: 1px solid #000;
     list-style-type: none;
     padding: 10px 10px 10px 10px;
@@ -275,7 +275,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
 }
 
 #jqt ul li a.active {
-    background-color: #194fdb;
+    background-color: #668E86;
     color: #fff;
 }
 #jqt ul li.arrow a.active {
@@ -285,7 +285,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
 }
 
 #jqt ul li a.button {
-    background-color: #194fdb;
+    background-color: #daa418;
     color: #fff;
 }
 
@@ -377,7 +377,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
     border: 0;
     font: normal 17px "Archer Book", Helvetica;
     padding: 0;
-    display: inline-block;
+    display: inline;
     margin-left: 0px;
     width: 100%;
     -webkit-appearance: textarea;
@@ -390,11 +390,13 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
 }
 
 #jqt ul li select {
+    position: fixed;
+    right: 50px;
+    color: #000;
     text-indent: 0px;
     background: transparent url(img/chevron.png) no-repeat 103% 3px;
     -webkit-appearance: textfield;
-    margin-left: -6px;
-    width: 104%;
+    width: 35%;
 }
 
 #jqt ul li input[type="checkbox"], #jqt ul li input[type="radio"] {
