@@ -265,6 +265,9 @@
 /* Begin PBXProject section */
 		2B27E04A143CFFCC00FABC97 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 2B27E04D143CFFCC00FABC97 /* Build configuration list for PBXProject "memento_5" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -410,6 +413,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "memento_5/memento_5-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "PHONEGAP_FRAMEWORK=YES";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "memento_5/memento_5-Info.plist";
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -437,6 +441,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "memento_5/memento_5-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "PHONEGAP_FRAMEWORK=YES";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "memento_5/memento_5-Info.plist";
 				OTHER_LDFLAGS = (
 					"-weak_framework",

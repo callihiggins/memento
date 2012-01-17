@@ -2,7 +2,6 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 var theImage = new Object();
-
 function preventBehavior(e) 
 { 
     e.preventDefault(); 
@@ -11,35 +10,86 @@ document.addEventListener("touchmove", preventBehavior, false);
 
 
 function onDeviceReady(){
-    $('#email_entry form').submit(saveSettings);
-    $('#time form').submit(saveTimeSettings);
-    $('#range form').submit(saveRangeSettings);
-    $('#caption_entry form').submit(saveCaption);
-    $('#email_entry').bind('pageAnimationStart', loadSettings);
-    $('#time').bind('pageAnimationStart', loadSettings);
     console.log(localStorage.email);
-    if(email == null){
-        alert("You need to create an account!");
-        ( "#email" ).show();
+    localStorage.confirmed = "false";
+    console.log(localStorage.confirmed);
+    $('#register_entry form').submit(registerEmail);
+    $('#login_entry form').submit(checkEmail);
+    $('#login_entry form').submit(checkEmail);
+    $('#caption_entry form').submit(saveCaption);
+    $('#range form').submit(saveRangeSettings);
+    $('#login_entry').bind('pageAnimationStart', loadSettings);
+    $('#time').bind('pageAnimationStart', loadSettings);
+    $('#login_email').bind('pageAnimationStart', loadSettings);
+ //   console.log(localStorage.email);
+//    if(localStorage.confrimed == false){
+//        checkEmail();
+//    }
+    
+    if (localStorage.confirmed == "true"){
+        jQT.goTo('#home');
+    } else {
+        jQT.goTo('#login_entry');
     }
-    $.jQTouch({statusBar:'black'});
 }
 
 function loadSettings() { 
-    $('#email').val(localStorage.email); 
+    $('#login_email').val(localStorage.email); 
     $('#time').val(localStorage.time); 
-    document.getElementById("date").innerHTML = localStorage.returnDate;
+  //  document.getElementById("date").innerHTML = localStorage.returnDate;
 }
 
-function saveSettings() { 
-    localStorage.email = $('#email').val(); 
-    jQT.goBack(); 
-    return false;
+
+function registerEmail() {
+    localStorage.confirmed = "false";
+    console.log("registering email");
+    localStorage.email = $('#register_email').val(); 
+    var postTo = "http://memento.heroku.com/users/new";
+    $('#register_entry').append('<div class="progress">Registering...');
+    $.post(postTo, 
+           {email:localStorage.email},
+           function(data) {
+           console.log(data.message);
+           if(data == "") {
+            console.log(data);
+            $('.progress').remove();
+            console.log("email sent");
+           jQT.goTo('#login_entry');
+           $('#login_entry').append('<div class="message">Please check your email for a confirmation link before logging in.');
+            } else {
+           console.log(data);
+            $('.progress').remove();
+           $('#register_entry').append('<div class="message">' + data + '. Please try again.');
+           }        
+           });
+
 }
+
+function checkEmail() { 
+    var postTo = "http://memento.heroku.com/users/check"; 
+    localStorage.email = $('#login_email').val(); 
+    console.log(localStorage.email);
+        $.post(postTo, 
+               {email: localStorage.email},
+           function(data) {
+           if(data == "exists") 
+               {
+               localStorage.confirmed = "true";
+               console.log(localStorage.confirmed);
+               jQT.goTo('#home');  
+               } else if (data =="no user") {
+               console.log(data);
+               $('#login_entry').append('<div class="message">Email address not found. Have you registered?');
+               } else {
+                $('#login_entry').append('<div class="message">There was an error. Please try again.');
+               }
+           });
+}
+
 function saveCaption(){
     localStorage.caption = $('#caption').val(); 
     console.log(localStorage.caption);
-    jQT.goBack(); 
+    jQT.goTo('#time'); 
     return false;
    
   
@@ -56,8 +106,7 @@ function saveRangeSettings() {
 function generateDate() {
     saveRangeSettings();
      var d = new Date();
-    
-     console.log("current date:" + d.toString());
+    console.log("current date:" + d.toString());
    var min = localStorage.min; 
     console.log("low range: " + min);
     var max = localStorage.max; 
@@ -88,7 +137,7 @@ function captureImage() {
 
 function captureSuccess(mediaFiles) {
     theImage =  mediaFiles[0];
-    jQT.goTo('#settings');
+    jQT.goTo('#caption_entry');
     /*var i, len;
     for (i = 0, len = mediaFiles.length; i < len; i += 1) {
         uploadFile(mediaFiles[i]);
@@ -97,14 +146,13 @@ function captureSuccess(mediaFiles) {
 
 function captureError(error) {
     var msg = 'An error occurred during capture: ' + error.code;
-   
-}
+   }
 
 // Upload files to server
 function uploadFile() {
     jQT.goTo('#home');
     console.log("upload started");
-    $('#header').append('<div id="progress">Developing...</div>');
+    $('#home').append('<div class="progress">Developing...');
    
     path = theImage.fullPath,
     name = theImage.name;
@@ -134,13 +182,13 @@ function uploadFile() {
 function win(r) {
     console.log('Upload success: ' + r.responseCode);
     console.log(r.bytesSent + ' bytes sent');
-    $('#progress').remove();
+    $('.progress').remove();
     navigator.notification.alert('Sent to your future self', null, 'Success!');
 }
 
 function fail(error) {
     console.log('Error uploading file ' + path + ': ' + error.code);
-    $('#progress').remove();
+    $('.progress').remove();
     navigator.notification.alert('Try Again', uploadFile(), 'Failed to Develop');
 }
 
