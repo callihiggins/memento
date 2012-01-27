@@ -10,12 +10,18 @@ document.addEventListener("touchmove", preventBehavior, false);
 
 
 function onDeviceReady(){
-    console.log(localStorage.email);
     localStorage.confirmed = "false";
+    if (localStorage.confirmed == "true"){
+        jQT.goTo('#home');
+    } else {
+        jQT.goTo('#login_entry');
+    }
+    console.log(localStorage.email);
     console.log(localStorage.confirmed);
     $('#register_entry form').submit(registerEmail);
     $('#login_entry form').submit(checkEmail);
     $('#login_entry form').submit(checkEmail);
+    $('#reset form').submit(resetPassword);
     $('#caption_entry form').submit(saveCaption);
     $('#range form').submit(saveRangeSettings);
     $('#login_entry').bind('pageAnimationStart', loadSettings);
@@ -26,12 +32,7 @@ function onDeviceReady(){
 //        checkEmail();
 //    }
     
-    if (localStorage.confirmed == "true"){
-        jQT.goTo('#home');
-    } else {
-        jQT.goTo('#login_entry');
-    }
-}
+   }
 
 function loadSettings() { 
     $('#login_email').val(localStorage.email); 
@@ -44,22 +45,24 @@ function registerEmail() {
     localStorage.confirmed = "false";
     console.log("registering email");
     localStorage.email = $('#register_email').val(); 
+    localStorage.password = $('#register_password').val(); 
     var postTo = "http://memento.heroku.com/users/new";
     $('#register_entry').append('<div class="progress">Registering...');
     $.post(postTo, 
-           {email:localStorage.email},
+           {email:localStorage.email, password:localStorage.password},
            function(data) {
-           console.log(data.message);
-           if(data == "") {
-            console.log(data);
-            $('.progress').remove();
-            console.log("email sent");
-           jQT.goTo('#login_entry');
-           $('#login_entry').append('<div class="message">Please check your email for a confirmation link before logging in.');
+            if(data == "") {
+             console.log(data);
+             $('.progress').remove();
+             console.log("email sent");
+             jQT.goTo('#login_entry');
+             $('.message').remove();
+             $('#login_entry').append('<div class="message">Please check your email for a confirmation link before logging in.');
             } else {
            console.log(data);
             $('.progress').remove();
-           $('#register_entry').append('<div class="message">' + data + '. Please try again.');
+           $('.message').remove();
+           $('#register_entry').append('<div class="message">' + data);
            }        
            });
 
@@ -67,29 +70,57 @@ function registerEmail() {
 
 function checkEmail() { 
     var postTo = "http://memento.heroku.com/users/check"; 
+    $('#login_entry').append('<div class="progress">Logging In');
     localStorage.email = $('#login_email').val(); 
-    console.log(localStorage.email);
+    localStorage.password = $('#login_password').val(); 
+    console.log(localStorage.password);
         $.post(postTo, 
-               {email: localStorage.email},
+               {email: localStorage.email, password:localStorage.password},
            function(data) {
-           if(data == "exists") 
+               $('.progress').remove();
+           if(data == "Logging in") 
                {
                localStorage.confirmed = "true";
                console.log(localStorage.confirmed);
-               jQT.goTo('#home');  
-               } else if (data =="no user") {
-               console.log(data);
-               $('#login_entry').append('<div class="message">Email address not found. Have you registered?');
+               jQT.goTo('#settings');  
                } else {
-                $('#login_entry').append('<div class="message">There was an error. Please try again.');
-               }
+               console.log(data);
+               $('.message').remove();
+               $('#login_entry').append('<div class="message">' + data);
+               } 
            });
+}
+
+function resetPassword(){
+   localStorage.email = $('#reset_email').val();  
+    var postTo = "http://memento.heroku.com/users/reset";
+    $('#reset').append('<div class="progress">Looking up email');
+    $.post(postTo, 
+           {email:localStorage.email},
+           function(data) {
+           if(data == "") {
+           console.log(data);
+           $('.progress').remove();
+           console.log("email sent");
+           jQT.goTo('#login_entry');
+           $('.message').remove();
+           $('#login_entry').append('<div class="message">Please check your email for a link to reset your password');
+           } else {
+           console.log(data);
+           $('.progress').remove();
+           $('.message').remove();
+           $('#reset').append('<div class="message">' + data);
+           }        
+           });
+    
 }
 
 function saveCaption(){
     localStorage.caption = $('#caption').val(); 
+    $('.clearit').val("Add a message");
     console.log(localStorage.caption);
     jQT.goTo('#time'); 
+    document.getElementById("caption_entry").reset();
     return false;
    
   
@@ -206,4 +237,5 @@ var show = function(mode) {
                             allowOldDates: false
                             }, cb);
 }
+
 

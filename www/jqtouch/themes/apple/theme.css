@@ -28,7 +28,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
 }
 
 #jqt h1 {
-    font: bold 16px "Archer Book", Helvetica;
+    font: bold 18px "Archer Book", Helvetica;
     text-shadow: rgba(255,255,255,.2) 0 1px 1px;
     color: rgb(76, 86, 108);
     margin: 10px 20px 6px;
@@ -41,7 +41,58 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
     margin: 10px 20px 6px;
 }
 
+#jqt h3 A:link{
+    font: bold 16px "Archer Book", Helvetica;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: rgba(255,255,255,.2) 0 1px 1px;
+    color: rgb(0,0,0);
+    height: 10px; 
+    left: 30px; 
+    margin: 0 auto; 
+    text-align: center; 
+  
+  
+}
+
+#jqt h3 A:visited{
+    font: bold 16px "Archer Book", Helvetica;
+    text-align: right;
+    text-decoration: none;
+    text-shadow: rgba(255,255,255,.2) 0 1px 1px;
+    color: rgb(0,0,0);
+    height: 10px; 
+    left: 30px; 
+    margin: 0 auto; 
+    text-align: center; 
+
+}
+
+#jqt h3 A:active{
+    font: bold 16 px "Archer Book", Helvetica;
+    text-align: right;
+    text-decoration: none;
+    text-shadow: rgba(255,255,255,.2) 0 1px 1px;
+    color: rgb(255,255,255);
+    height: 10px; 
+    left: 30px; 
+    margin: 0 auto; 
+    text-align: center; 
+}
+
+#jqt div.resetButton{
+    -webkit-border-radius: 4px;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255, .2)), to(rgba(255,255,255,.5)));
+    border: 1px outset #aaa;
+    display: block;
+    font: normal 17px "Archer Book", Helvetica;
+    padding: 10px;
+}    
+
+
+
 #jqt div.loginButton {
+    background-color: rgba(255,255,255,.1); 
     position: absolute; 
     top: 60px; 
     left: 170px;
@@ -52,7 +103,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
     
 }
 #jqt div.loginActiveButton {
-    background-color: rgba(255,255,255,.2); 
+    background-color: rgba(255,255,255,.3); 
     position: absolute; 
     top: 60px; 
     left: 170px;
@@ -64,6 +115,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
 }
 
 #jqt div.registerButton { 
+    background-color: rgba(255,255,255,.1); 
     position: absolute; 
     top: 60px; 
     left: 60px;
@@ -74,7 +126,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
 }
 
 #jqt div.registerActiveButton { 
-    background-color: rgba(255,255,255,.2); 
+    background-color: rgba(255,255,255,.3); 
     position: absolute; 
     top: 60px; 
     left: 60px;
@@ -85,8 +137,8 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
 }
 
 #jqt div.progress { 
-    background-image: url('img/loading-gif-animation.gif');
-    background-position: 95% center;
+    background-image: url('img/loading.gif');
+    background-position: 50% center;
     background-repeat: no-repeat;
     -webkit-border-radius: 10px; 
     background-color: rgba(0,0,0,.7); 
@@ -95,7 +147,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
     font-weight: bold; 
     height: 120px; 
     left: 60px; 
-    line-height: 80px; 
+    line-height: 100px; 
     margin: 0 auto; 
     position: absolute; 
     text-align: center; 
@@ -113,7 +165,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
     margin: 0 auto; 
     position: absolute; 
     text-align: center; 
-    top: 320px; 
+    top: 350px; 
     width: 250px;
     z-index: 100;
 }
@@ -209,7 +261,7 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
 }
 
 #jqt .back.active {
-    -webkit-border-image: url(img/backButton.png) 0 8 0 14;
+    -webkit-border-image: url(img/backButtonActive.png) 0 8 0 14;
 }
 
 #jqt .leftButton, #jqt .cancel {
@@ -284,6 +336,13 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
     border-top: 1px solid #000;
     list-style-type: none;
     padding: 10px 10px 10px 10px;
+}
+
+#jqt ul li.short {
+    color: rgba(0,0,0, .4);
+    border-top: 1px solid #000;
+    list-style-type: none;
+    padding: 4px 10px 4px 10px;
 }
 
 #jqt ul li a.active.loading {
@@ -861,8 +920,12 @@ font-family: "Archer Book", Helvetica, Verdana, Arial, sans-serif;
     border-top: 1px solid rgba(76, 86, 108, .3);
     font-weight: bold;
 }
-input[type='submit'] {
+#jqt input[type='submit'] {
     -webkit-border-radius: 4px;
+    text-align: center;
+    margin-left: auto;   
+    margin-right: auto;   
+    width: 8em;
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255, .2)), to(rgba(255,255,255,.5)));
     border: 1px outset #aaa;
     display: block;

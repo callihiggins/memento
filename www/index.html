@@ -24,7 +24,8 @@
             <form method="post">
                 <ul class="rounded">
                     <h2>Please register your email with memento </h2>
-                        <li><input type="email" placeholder="Email" name="register_email" id="register_email" autocapitalize="off"  autocorrect="off" autocomplete="off" /></li>
+                        <li><input type="email" placeholder="Email" name="register_email" id="register_email" autocapitalize="off"  autocorrect="off" autocomplete="off" /><br>
+                            <input type="password" placeholder="Password" name="register_password" id="register_password" autocapitalize="off"  autocorrect="off" autocomplete="off" /></li>
                         <li><input type="submit" class="submit" name="action" value="Register"/></li>
                 </ul>
             </form>
@@ -36,12 +37,26 @@
                 <a href="#register_entry" class="dissolve"><div class="registerButton"></div></a><a href="#login_entry" class="dissolve"><div class="loginActiveButton"></div></a>
             <form method="post">
                 <ul class="rounded">
-                    <h2>Please enter your email to login </h2>
-                        <li><input type="email" placeholder="Email" name="login_email" id="login_email" autocapitalize="off" autocorrect="off" autocomplete="off" /></li>
+                        <li><input type="email" placeholder="Email" name="login_email" id="login_email" autocapitalize="off" autocorrect="off" autocomplete="off" /><br>
+                            <input type="password" placeholder="Password" name="login_password" id="login_password" autocapitalize="off"  autocorrect="off" autocomplete="off" /></li>
                         <li><input type="submit" class="submit" name="action" value="Login"/></li>
-                </ul>
+               
+               <li class="short"> <h3><a href="#reset">Reset my password</a></h3></li>
+ </ul>
             </form>
     </div>
+    <div id="reset">
+        <div class="toolbar">
+            <h1>Reset Password</h1>
+              <a class="button back" href="#"></a>
+        </div>
+        <form method="post">
+            <ul class="rounded">
+                <li><input type="email" placeholder="Email" name="reset_email" id="reset_email" autocapitalize="off" autocorrect="off" autocomplete="off" /></li>
+                <li><input type="submit" class="submit" name="action" value="Reset password"/></li>
+            </ul>
+            </form>
+        </div>
     <div id="home">
             <div id="header"> <h1> <img src="images/memento_header.png" width=300></h1>
                <div class="cameraButton" onclick="captureImage();"></div>
@@ -64,7 +79,7 @@
             </div>
             <form method="post">
                 <ul class="rounded">
-                    <li><input type="text" name="caption" id="caption" autocapitalize="on" autocorrect="on" autocomplete="on" /></li>
+                    <li><input type="text" name="caption" id="caption" autocapitalize="on" autocorrect="on" autocomplete="on" class="clearit" /></li>
                     <li><input type="submit" class="submit" name="action" value="Save Message"/></li>
                 </ul>
             </form>
@@ -86,7 +101,8 @@
                         <a class="button back" href="#"></a>
                      </div>
                     <form method="post">
-                    <ul class = "rounded"><li> 
+                    <ul class = "rounded">
+                    <li> 
                         From:<select id="minimum">
                      <option value="6">6 months</option>
                      <option value="7">7 months</option>
@@ -113,7 +129,8 @@
                         <option value="36">3 years</option>
                         <option value="48">4 years</option>
                         <option value="60" selected>5 years</option>
-                        </select></li>
+                        </select>
+                    </li>
             <li><input type="submit" class="submit" name="action" value="Send Photo" onclick="generateDate();"/></li>
                         </form>                    
                 </ul>
@@ -126,7 +143,7 @@
                     <ul>
                         <li class="arrow"><a href="#" onclick="show('date')">Choose Date</a></li>
                         <div style="text-align:center"><span id="date"></span></div>
-                    <li><input type="submit" class="submit" name="action" value="Send Photo" onclick="uploadFile();"/></li>
+                        <li><input type="submit" class="submit" name="action" value="Send Photo" onclick="uploadFile();"/></li>
                     </ul>
                 </div>
         </div>
