@@ -10,6 +10,9 @@ document.addEventListener("touchmove", preventBehavior, false);
 
 
 function onDeviceReady(){
+   setTimeout(function() {
+        navigator.splashscreen.hide();
+               	}, 2000);
     localStorage.confirmed = "false";
     if (localStorage.confirmed == "true"){
         jQT.goTo('#home');
@@ -20,6 +23,7 @@ function onDeviceReady(){
     console.log(localStorage.confirmed);
     $('#register_entry form').submit(registerEmail);
     $('#login_entry form').submit(checkEmail);
+      $('#tag_entry form').submit(saveTags);
     $('#login_entry form').submit(checkEmail);
     $('#reset form').submit(resetPassword);
     $('#caption_entry form').submit(saveCaption);
@@ -57,7 +61,8 @@ function registerEmail() {
              console.log("email sent");
              jQT.goTo('#login_entry');
              $('.message').remove();
-             $('#login_entry').append('<div class="message">Please check your email for a confirmation link before logging in.');
+           navigator.notification.alert('Confirm your email address to ensure your photos return to you safely', null, 'Check your email!');
+
             } else {
            console.log(data);
             $('.progress').remove();
@@ -82,7 +87,7 @@ function checkEmail() {
                {
                localStorage.confirmed = "true";
                console.log(localStorage.confirmed);
-               jQT.goTo('#settings');  
+               jQT.goTo('#home');  
                } else {
                console.log(data);
                $('.message').remove();
@@ -104,7 +109,7 @@ function resetPassword(){
            console.log("email sent");
            jQT.goTo('#login_entry');
            $('.message').remove();
-           $('#login_entry').append('<div class="message">Please check your email for a link to reset your password');
+          navigator.notification.alert('We just sent you a link to reset your password', null, 'Check your email!');
            } else {
            console.log(data);
            $('.progress').remove();
@@ -117,13 +122,19 @@ function resetPassword(){
 
 function saveCaption(){
     localStorage.caption = $('#caption').val(); 
-    $('.clearit').val("Add a message");
+    $('.clearit').val("");
     console.log(localStorage.caption);
-    jQT.goTo('#time'); 
+    jQT.goTo('#tag_entry'); 
     document.getElementById("caption_entry").reset();
     return false;
    
   
+}
+function saveTags(){
+    localStorage.tags = $('#tag_email').val(); 
+    $('.clearit').val("");
+    jQT.goTo('#time');
+
 }
 function saveTimeSettings() { 
     localStorage.time = $('#time').val(); 
@@ -198,6 +209,8 @@ function uploadFile() {
     params.email =theEmail;
     params.date = theDate;
     params.caption = theCaption;
+    params.tags = localStorage.tags;
+
     
     options.params = params;
    
@@ -214,6 +227,7 @@ function win(r) {
     console.log('Upload success: ' + r.responseCode);
     console.log(r.bytesSent + ' bytes sent');
     $('.progress').remove();
+    navigator.notification.vibrate();
     navigator.notification.alert('Sent to your future self', null, 'Success!');
 }
 
