@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'memento7' target in the 'memento7' project
+//
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+#endif

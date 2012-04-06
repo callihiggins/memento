@@ -55,7 +55,7 @@
                 formSelector: 'form',
                 fullScreen: true,
                 fullScreenClass: 'fullscreen',
-                hoverDelay: 50,
+                hoverDelay: 30,
                 icon: null,
                 icon4: null, // experimental
                 moveThreshold: 10,

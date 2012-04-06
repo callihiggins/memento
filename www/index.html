@@ -1,163 +1,166 @@
 <html>
     <head>
         <title>memento</title>
-        <script type="text/javascript" charset="utf-8" src="phonegap-1.1.0.js"></script>
-        <script type="text/javascript" charset="utf-8" src="memento.js"></script>                                                                                                   
+        <script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="memento.js"></script>                                                                                                  
         <script type="text/javascript" charset="utf-8" src="DatePicker.js"></script>                                                                                                   
-        <script type="text/javascript" src="jquery.js"></script>
+        <script type="text/javascript" src="jquery-1.7.1.js"></script>
         <script type="text/javascript" charset="utf-8" src="json2.js"></script>
-        <link type="text/css" rel="stylesheet" media="screen" href="jqtouch/jqtouch/jqtouch.css">
-        <link type="text/css" rel="stylesheet" media="screen" href="jqtouch/themes/apple/theme.css">
+     <link type="text/css" rel="stylesheet" media="screen" href="jqtouch/jqtouch/jqtouch.css">
+           <link type="text/css" rel="stylesheet" media="screen" href="jqtouch/themes/apple/theme.css"> 
         <script type="text/javascript" src="jqtouch/jqtouch/jquery.js"></script>
         <script type="text/javascript" src="jqtouch/jqtouch/jqtouch.js"></script>
         <script type="text/javascript">
-            var jQT = $.jQTouch();
+                var jQT = $.jQTouch();
         </script>
-    </head>
+<meta name="viewport" content="width=device-width initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            </head>
     <body>
-    <div id="register_entry">
+        <div id="register_entry">
             <div class="toolbar">
                 <h1>memento</h1>
             </div>
-              <a href="#register_entry" class="dissolve"><div class="registerActiveButton"></div></a><a href="#login_entry" class="dissolve"><div class="loginButton"></div></a>
+            <a href="#register_entry" class="dissolve"><div class="registerActiveButton"></div></a><a href="#login_entry" class="dissolve"><div class="loginButton"></div></a>
             <form method="post">
                 <ul class="rounded">
                     <h2>Please register your email with memento </h2>
-                        <li><input type="email" placeholder="Email" name="register_email" id="register_email" autocapitalize="off"  autocorrect="off" autocomplete="off" /><br>
-                            <input type="password" placeholder="Create a Password" name="register_password" id="register_password" autocapitalize="off"  autocorrect="off" autocomplete="off" /></li>
-                        <li><input type="submit" class="submit" name="action" value="Register"/></li>
+                    <li><input type="email" placeholder="Email" name="register_email" id="register_email" autocapitalize="off"  autocorrect="off" autocomplete="off" /><br>
+                        <input type="password" placeholder="Create a Password" name="register_password" id="register_password" autocapitalize="off"  autocorrect="off" autocomplete="off" /></li>
+                    <li><input type="submit" class="submit" name="action" value="Register"/></li>
                 </ul>
             </form>
-    </div>
-    <div id="login_entry">
-          <div class="toolbar">
+        </div>
+        <div id="login_entry">
+            <div class="toolbar">
                 <h1>memento</h1>
-          </div>
-                <a href="#register_entry" class="dissolve"><div class="registerButton"></div></a><a href="#login_entry" class="dissolve"><div class="loginActiveButton"></div></a>
+            </div>
+            <a href="#register_entry" class="dissolve"><div class="registerButton"></div></a><a href="#login_entry" class="dissolve"><div class="loginActiveButton"></div></a>
             <form method="post">
                 <ul class="rounded">
-                        <li><input type="email" placeholder="Email" name="login_email" id="login_email" autocapitalize="off" autocorrect="off" autocomplete="off" /><br>
-                            <input type="password" placeholder="Enter Password" name="login_password" id="login_password" autocapitalize="off"  autocorrect="off" autocomplete="off" /></li>
-                        <li><input type="submit" class="submit" name="action" value="Login"/></li>
-               
-               <li class="short"> <h3><a href="#reset">Reset my password</a></h3></li>
- </ul>
-            </form>
-    </div>
-    <div id="reset">
-        <div class="toolbar">
-            <h1>Reset Password</h1>
-              <a class="button back" href="#"></a>
-        </div>
-        <form method="post">
-            <ul class="rounded">
-                <li><input type="email" placeholder="Email" name="reset_email" id="reset_email" autocapitalize="off" autocorrect="off" autocomplete="off" /></li>
-                <li><input type="submit" class="submit" name="action" value="Reset password"/></li>
-            </ul>
+                    <li><input type="email" placeholder="Email" name="login_email" id="login_email" autocapitalize="off" autocorrect="off" autocomplete="off" /><br>
+                        <input type="password" placeholder="Enter Password" name="login_password" id="login_password" autocapitalize="off"  autocorrect="off" autocomplete="off" /></li>
+                    <li><input type="submit" class="submit" name="action" value="Login"/></li>
+                    
+                    <li class="short"> <h3><a href="#reset">Reset my password</a></h3></li>
+                </ul>
             </form>
         </div>
-    <div id="home">
-            <div id="header"> <h1> <img src="images/memento_header.png" width=300></h1>
-               <div class="cameraButton" onclick="captureImage();"></div>
-               <a href="#settings"><div class="settingsButton"> </div></a>
-            </div>
-        </div>
-        <div id="settings">  
+        <div id="reset">
             <div class="toolbar">
-                <h1> Settings</h1>
+                <h1>Reset</h1>
+                <a class="button back" href="#"></a>
             </div>
-            <ul>
-                <li class="arrow"><a href="#time">Developing Time</a></li>
-                <li class="arrow"><a href="#email_entry">Delivery Address</a></li>
-                <li class="arrow"><a href="#caption_entry">Add Caption</a></li>
-            </ul>
+            <form method="post">
+                <ul class="rounded">
+                    <li><input type="email" placeholder="Your email address" name="reset_email" id="reset_email" autocapitalize="off" autocorrect="off" autocomplete="off" /></li>
+                    <li><input type="submit" class="submit" name="action" value="Reset password"/></li>
+                </ul>
+            </form>
+        </div>
+        <div id="home">
+            <div id="header"> <h1> <img src="images/memento_header.png" width=300></h1></div>
+                <div class="cameraButton" onclick="cameraButton();"></div><div class="cameraLable"> <h4>Tap to capture a moment</h4></div>
+                <div class="logoutButton" onclick="logOut();">Log out</div>
         </div>
         <div id="caption_entry">
             <div class="toolbar">
-                <h1>Add a message</h1>
+                <h1>Message</h1>
+                <a class="skipButton" href="#tag_entry"></a>
             </div>
             <form method="post">
                 <ul class="rounded">
-                    <li><input type="text" name="caption" id="caption" autocapitalize="on" autocorrect="on" autocomplete="on" class="clearit" /></li>
+                    <li><textarea name="caption" rows="8" columns="24"   id="caption" autocapitalize="on" autocorrect="on" autocomplete="on" class="clearit" /></textarea></li> 
                     <li><input type="submit" class="submit" name="action" value="Save Message"/></li>
                 </ul>
             </form>
         </div>
         <div id="tag_entry">
             <div class="toolbar">
-                <h1>Tag Someone</h1>
+                <h1>Tags</h1>
+                <a class="button back" href="#"></a>
+                <a class="skipButton" href="#time"></a>
             </div>
-            Please enter email addresses of people you want to add, seperated by comma                        
+            <h2> Are there other people in this photo? If so, you can add their email addresses below and they'll receive this memento the same day you do. Separate email addresses by commas.</h2>                      
             <form method="post">
                 <ul class="rounded">
-                    <li><input type="text" name="tag_email" id="tag_email" autocapitalize="off" autocorrect="off" autocomplete="off" class="clearit" /></li>
-                    <li><input type="submit" class="submit" name="action" value="Save Email"/></li>
+                    <li><input type="text" name="tag_email" id="tag_email" autocapitalize="off" autocorrect="off" autocomplete="on" class="clearit" /></li>
+                    <li><input type="submit" class="submit" name="action" value="Save Emails"/></li>
                 </ul>
             </form>
         </div>
-
+        
         <div id="time">
             <div class="toolbar">
-                <h1>Developing Time</h1>
+                <h1>Time</h1>
                 <a class="button back" href="#"></a>
-
             </div>
-            <ul>
-                <li class="arrow"><a href='#dateEntered'>Choose Date</a></li>
-                <li class="arrow"><a href='#range'>Choose Range</a></li>
+            <h5> When do you want this memory back? </h5>
+            <ul class="rounded">
+                <li class="date" onclick="navDate();">Choose Date</li>
+                <li class="arrow"><a href='#range'>Surprise Me</a></li>
             </ul>
         </div>
-                <div id="range">
-                     <div class="toolbar">
-                         <h1>Date Range</h1>
-                        <a class="button back" href="#"></a>
-                     </div>
-                    <form method="post">
-                    <ul class = "rounded">
-                    <li> 
-                        From:<select id="minimum">
-                     <option value="6">6 months</option>
-                     <option value="7">7 months</option>
-                     <option value="8">8 months</option>
-                     <option value="9">9 months</option>
-                     <option value="10">10 months</option>
-                     <option value="11">11 months</option>
-                     <option value="12">1 year</option>
-                     <option value="24">2 years</option>
-                     <option value="36">3 years</option>
-                     <option value="48">4 years</option>
-                     <option value="60">5 years</option>
-                    </select></li>
+        <div id="range">
+            <div class="toolbar">
+                <h1>Date</h1>
+                <a class="button back" href="#"></a>
+            </div>
+            <h5>Pick a random date range</h5>
+              <form method="post">
+                <ul class = "range">
+                    <li class = "range"> 
+                        From:<select id="minimum" class"range">
+                            <option value="6">6 months</option>
+                            <option value="7">7 months</option>
+                            <option value="8">8 months</option>
+                            <option value="9">9 months</option>
+                            <option value="10">10 months</option>
+                            <option value="11">11 months</option>
+                            <option value="12">1 year</option>
+                            <option value="24">2 years</option>
+                            <option value="36">3 years</option>
+                            <option value="48">4 years</option>
+                            <option value="60">5 years</option>
+                        </select></li>
                     <li>
-                        To:<select id="maximum">
-                        <option value="6">6 months</option>
-                        <option value="7">7 months</option>
-                        <option value="8">8 months</option>
-                        <option value="9">9 months</option>
-                        <option value="10">10 months</option>
-                        <option value="11">11 months</option>
-                        <option value="12">1 year</option>
-                        <option value="24">2 years</option>
-                        <option value="36">3 years</option>
-                        <option value="48">4 years</option>
-                        <option value="60" selected>5 years</option>
+                        To:<select id="maximum" class"range">
+                            <option value="6">6 months</option>
+                            <option value="7">7 months</option>
+                            <option value="8">8 months</option>
+                            <option value="9">9 months</option>
+                            <option value="10">10 months</option>
+                            <option value="11">11 months</option>
+                            <option value="12">1 year</option>
+                            <option value="24">2 years</option>
+                            <option value="36">3 years</option>
+                            <option value="48">4 years</option>
+                            <option value="60" selected>5 years</option>
                         </select>
                     </li>
-            <li><input type="submit" class="submit" name="action" value="Send Photo" onclick="generateDate();"/></li>
-                        </form>                    
-                </ul>
-                </div>
-                <div id="dateEntered">
-                    <div class="toolbar">
-                        <h1>Choose Date</h1>
-                        <a class="button back" href="#"></a>
-                    </div>
-                    <ul>
-                        <li class="arrow"><a href="#" onclick="show('date')">Choose Date</a></li>
-                        <div style="text-align:center"><span id="date"></span></div>
-                        <li><input type="submit" class="submit" name="action" value="Send Photo" onclick="uploadFile();"/></li>
-                    </ul>
-                </div>
+                    <li><input type="submit" class="submit" name="action" value="Send Photo" onclick="generateDate();"/></li>
+                    </form>                    
+            </ul>
+                    
+        </div>
+        <div id="dateEntered">
+           <!-- <script>
+                plugins.datePicker.show({
+                                        date: new Date(),
+                                        mode: mode, //date or time or blank for both
+                                        allowOldDates: false
+                                        }, cb);                </script>-->
+            <div class="toolbar">
+                <h1>Choose Date</h1>
+                
+                <a class="button back" href="#"></a>
+            </div>
+            <ul>
+                <li class="arrow"><a href="#" onclick="show('date')">Choose Date</a></li>
+               <li> <div style="text-align:center"><span id="date" class="clearit"></span></div></li>
+                <li><input type="submit" class="submit" name="action" value="Send Photo" onclick="uploadFile();"/></li>
+            </ul>
+            <h4> The day must be between 6 months and 5 years into the future. </h4>
+        </div>
         </div>
     </body>
 </html>
